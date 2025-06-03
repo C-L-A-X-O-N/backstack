@@ -1,0 +1,6 @@
+[submodule "Controller"]
+	path = Controller
+	url = git@github.com:C-L-A-X-O-N/Controller.git
+[submodule "TraCI-script"]
+	path = TraCI-script
+	url = git@github.com:C-L-A-X-O-N/TraCI-script.git

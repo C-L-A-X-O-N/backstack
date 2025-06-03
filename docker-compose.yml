@@ -1,0 +1,68 @@
+networks:
+  deep:
+    driver: bridge
+  backend:
+    driver: bridge
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./Controller/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - deep
+      - backend
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: claxon
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+  
+  traci:
+    build: TraCI-script
+    depends_on:
+      - mosquitto
+    environment:
+      MQTT_HOST: mosquitto
+      MQTT_PORT: 1883
+    networks:
+      - deep
+    
+  controller_master:
+    build: Controller
+    depends_on:
+      - controller_node
+      - postgres
+    environment:
+      BROKER_HOST: mosquitto
+      BROKER_PORT: 1883
+      MASTER: "True"
+      DB_HOST: postgres
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: claxon
+    ports:
+      - "7890:7890"
+    networks:
+      - backend
+      - deep
+
+  controller_node:
+    build: Controller
+    depends_on:
+      - mosquitto
+      - traci
+    environment:
+      BROKER_HOST: mosquitto
+      BROKER_PORT: 1883
+    networks:
+      - backend
+      - deep
