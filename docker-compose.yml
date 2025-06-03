@@ -27,7 +27,7 @@ services:
       - backend
   
   traci:
-    build: TraCI-script
+    image: ghcr.io/c-l-a-x-o-n/traci-script/traci:latest
     depends_on:
       - mosquitto
     environment:
@@ -37,7 +37,7 @@ services:
       - deep
     
   controller_master:
-    build: Controller
+    image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
     depends_on:
       - controller_node
       - postgres
@@ -56,7 +56,7 @@ services:
       - deep
 
   controller_node:
-    build: Controller
+    image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
     depends_on:
       - mosquitto
       - traci

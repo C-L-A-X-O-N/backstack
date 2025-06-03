@@ -1,0 +1,9 @@
+services:
+  traci:
+    build: TraCI-script
+    
+  controller_master:
+    build: Controller
+
+  controller_node:
+    build: Controller
