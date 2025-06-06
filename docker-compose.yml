@@ -14,6 +14,11 @@ services:
     networks:
       - deep
       - backend
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "localhost", "-t", "test", "-m", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   postgres:
     image: postgres:latest
@@ -25,11 +30,17 @@ services:
       - "5432:5432"
     networks:
       - backend
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   
   traci:
     image: ghcr.io/c-l-a-x-o-n/traci-script/traci:latest
     depends_on:
-      - mosquitto
+      mosquitto:
+        condition: service_healthy
     environment:
       MQTT_HOST: mosquitto
       MQTT_PORT: 1883
@@ -39,8 +50,12 @@ services:
   controller_master:
     image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
     depends_on:
-      - controller_node
-      - postgres
+      controller_node:
+        condition: service_started
+      mosquitto:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     environment:
       BROKER_HOST: mosquitto
       BROKER_PORT: 1883
@@ -58,8 +73,10 @@ services:
   controller_node:
     image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
     depends_on:
-      - mosquitto
-      - traci
+      mosquitto:
+        condition: service_healthy
+      traci:
+        condition: service_started
     environment:
       BROKER_HOST: mosquitto
       BROKER_PORT: 1883
