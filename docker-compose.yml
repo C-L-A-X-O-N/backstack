@@ -41,9 +41,13 @@ services:
     depends_on:
       mosquitto:
         condition: service_healthy
+      sumo:
+        condition: service_started
     environment:
       MQTT_HOST: mosquitto
       MQTT_PORT: 1883
+      SUMO_HOST: sumo
+      SUMO_PORT: 8873
     networks:
       - deep
     
@@ -83,3 +87,27 @@ services:
     networks:
       - backend
       - deep
+
+  sumo_config_gen:
+    build: ./TraCI-script
+    command: ["python3", "config_gen.py"]
+    volumes:
+      - traci_config:/app/data
+    
+
+  sumo:
+    image: ghcr.io/eclipse-sumo/sumo
+    command: ["sumo", "-c", "/config/file.sumocfg", "--remote-port", "8873"]
+    ports:
+      - "8873:8873"
+    volumes:  
+      - traci_config:/config
+    depends_on:
+      sumo_config_gen:
+        condition: service_completed_successfully
+    networks:
+      - deep
+
+volumes:
+  traci_config:
+    driver: local

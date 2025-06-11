@@ -1,6 +1,8 @@
 services:
   traci:
     build: TraCI-script
+    volumes:
+      - ./TraCI-script:/app
     
   controller_master:
     build: Controller
