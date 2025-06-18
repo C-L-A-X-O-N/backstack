@@ -21,7 +21,7 @@ services:
       retries: 5
 
   postgres:
-    image: postgres:latest
+    image: postgis/postgis:16-3.4
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
@@ -84,9 +84,24 @@ services:
     environment:
       BROKER_HOST: mosquitto
       BROKER_PORT: 1883
+      PERSONNAL_BROKER_HOST: mosquitto_node
+      PERSONNAL_BROKER_PORT: 1883
     networks:
       - backend
       - deep
+
+  mosquitto_node:
+    image: eclipse-mosquitto:2.0
+    volumes:
+      - ./Controller/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - deep
+      - backend
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "localhost", "-t", "test", "-m", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   sumo_config_gen:
     build: ./TraCI-script
@@ -98,6 +113,7 @@ services:
   sumo:
     image: ghcr.io/eclipse-sumo/sumo
     command: ["sumo", "-c", "/config/file.sumocfg", "--remote-port", "8873"]
+    restart: always
     ports:
       - "8873:8873"
     volumes:  

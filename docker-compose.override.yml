@@ -6,6 +6,10 @@ services:
     
   controller_master:
     build: Controller
+    volumes:
+      - ./Controller:/app
 
   controller_node:
     build: Controller
+    volumes:
+      - ./Controller:/app
