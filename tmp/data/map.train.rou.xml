@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-06-18 08:03:31 by Eclipse SUMO duarouter Version 1.23.0
+<duarouterConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="data/map.net.xml"/>
+        <route-files value="data/map.train_trip.xml"/>
+    </input>
+
+    <output>
+        <output-file value="data/map.train.rou.xml"/>
+    </output>
+
+</duarouterConfiguration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="train__tram" vClass="tram"/>
+    <vehicle id="train_0" type="train__tram" depart="0.00" departPos="14.30">
+        <route edges="290167754#1 290167754#2 290172315#0 290172315#1 290172315#2 290172315#3 290172315#4 290172315#5 918466426#0 918466426#1 290172317#0"/>
+    </vehicle>
+    <vehicle id="train_1" type="train__tram" depart="30.00" departPos="23.67">
+        <route edges="918466426#0 918466426#1 290172317#0 290172317#1 290172319#0 290172319#1 290172319#2 290172319#3 290172319#4"/>
+    </vehicle>
+    <vehicle id="train_2" type="train__tram" depart="60.00" departPos="18.39">
+        <route edges="918020201#0 918020201#1 918020201#2 918020201#3 290172320#0 290172320#1 290172320#2 290172320#3 290172320#4 290172320#5 290172320#6 290172318#0 290172318#1 290172318#2 918397196#0 918397196#1 918397196#2 918397196#3 918397197#0 918397197#1 918397197#2 290172316 918397200 290172322#0 290172322#1 290172322#2"/>
+    </vehicle>
+    <vehicle id="train_3" type="train__tram" depart="90.00" departPos="2.95">
+        <route edges="918020201#2 918020201#3 290172320#0 290172320#1 290172320#2 290172320#3 290172320#4 290172320#5 290172320#6 290172318#0 290172318#1 290172318#2 918397196#0 918397196#1 918397196#2 918397196#3 918397197#0 918397197#1 918397197#2"/>
+    </vehicle>
+    <vehicle id="train_4" type="train__tram" depart="120.00" departPos="34.80">
+        <route edges="290172319#5 290172319#6 918466425#0 918466425#1"/>
+    </vehicle>
+    <vehicle id="train_5" type="train__tram" depart="150.00" departPos="129.06">
+        <route edges="290172318#0"/>
+    </vehicle>
+    <vehicle id="train_6" type="train__tram" depart="180.00" departPos="17.72">
+        <route edges="290172318#0 290172318#1 290172318#2 918397196#0 918397196#1 918397196#2 918397196#3 918397197#0 918397197#1 918397197#2 290172316 918397200 290172322#0 290172322#1"/>
+    </vehicle>
+    <vehicle id="train_7" type="train__tram" depart="210.00" departPos="3.17">
+        <route edges="918020201#2 918020201#3 290172320#0 290172320#1 290172320#2 290172320#3 290172320#4 290172320#5 290172320#6"/>
+    </vehicle>
+    <vehicle id="train_8" type="train__tram" depart="240.00" departPos="18.27">
+        <route edges="918020201#0 918020201#1 918020201#2 918020201#3 290172320#0 290172320#1 290172320#2 290172320#3 290172320#4 290172320#5 290172320#6 290172318#0 290172318#1 290172318#2 918397196#0 918397196#1 918397196#2 918397196#3 918397197#0 918397197#1 918397197#2 290172316 918397200 290172322#0 290172322#1 290172322#2"/>
+    </vehicle>
+    <vehicle id="train_9" type="train__tram" depart="270.00" departPos="68.69">
+        <route edges="290167754#0 290167754#1 290167754#2 290172315#0 290172315#1 290172315#2 290172315#3 290172315#4 290172315#5 918466426#0 918466426#1 290172317#0 290172317#1 290172319#0 290172319#1 290172319#2 290172319#3 290172319#4 290172319#5 290172319#6 918466425#0 918466425#1 918466425#2"/>
+    </vehicle>
+</routes>

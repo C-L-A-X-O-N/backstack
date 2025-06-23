@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-06-18 08:03:32.876997 by randomTrips.py UNKNOWN
+<configuration>
+    <net-file value="data/map.net.xml"/>
+    <output-trip-file value="data/map.bus_trip.xml"/>
+    <prefix value="bus_"/>
+    <vehicle-class value="bus"/>
+    <random-departpos value="True"/>
+    <allow-fringe value="True"/>
+    <validate value="True"/>
+    <end value="300.0"/>
+    <period value="15.0"/>
+</configuration>
+-->
+
+<!-- generated on 2025-06-18 08:03:32 by Eclipse SUMO duarouter Version 1.23.1
+<duarouterConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="data/map.net.xml"/>
+        <route-files value="data/map.bus_trip.xml"/>
+    </input>
+
+    <output>
+        <output-file value="data/map.bus_trip.xml.tmp"/>
+        <alternatives-output value="NUL"/>
+        <write-trips value="true"/>
+    </output>
+
+    <time>
+        <begin value="0.0"/>
+        <end value="300.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <ignore-errors value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</duarouterConfiguration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="bus__bus" vClass="bus"/>
+    <trip id="bus_0" type="bus__bus" depart="0.00" departPos="1.42" from="26128494#1" to="-127226851#0"/>
+    <trip id="bus_1" type="bus__bus" depart="15.00" departPos="57.61" from="-27159800" to="27159801#0"/>
+    <trip id="bus_2" type="bus__bus" depart="30.00" departPos="6.38" from="332331900#2" to="-162257664#0"/>
+    <trip id="bus_3" type="bus__bus" depart="45.00" departPos="1.71" from="-1314248997" to="-27116956"/>
+    <trip id="bus_4" type="bus__bus" depart="60.00" departPos="0.13" from="-127226851#1" to="-26594409#1"/>
+    <trip id="bus_5" type="bus__bus" depart="75.00" departPos="71.96" from="162257583#0" to="-27159796"/>
+    <trip id="bus_6" type="bus__bus" depart="90.00" departPos="83.64" from="331661406#1" to="-1090800264#2"/>
+    <trip id="bus_7" type="bus__bus" depart="105.00" departPos="6.00" from="26592447#2" to="-48515004#5"/>
+    <trip id="bus_8" type="bus__bus" depart="120.00" departPos="0.02" from="491793318#1" to="-48515004#1"/>
+    <trip id="bus_9" type="bus__bus" depart="135.00" departPos="20.85" from="-162257687#1" to="332126813"/>
+    <trip id="bus_10" type="bus__bus" depart="150.00" departPos="3.79" from="314699007#1" to="26776711#6"/>
+    <trip id="bus_11" type="bus__bus" depart="165.00" departPos="0.11" from="636253124#1" to="-636253124#1"/>
+    <trip id="bus_12" type="bus__bus" depart="180.00" departPos="8.49" from="331685537" to="230238810#0"/>
+    <trip id="bus_13" type="bus__bus" depart="195.00" departPos="0.30" from="162257690#1" to="26594409#0"/>
+    <trip id="bus_14" type="bus__bus" depart="210.00" departPos="12.99" from="-27161445#0" to="-332126811#1"/>
+    <trip id="bus_15" type="bus__bus" depart="225.00" departPos="20.52" from="-27162526#0" to="-168214469#2"/>
+    <trip id="bus_16" type="bus__bus" depart="240.00" departPos="13.42" from="26092568#2" to="-49157628"/>
+    <trip id="bus_17" type="bus__bus" depart="255.00" departPos="51.67" from="-26612713#2" to="-27498439"/>
+    <trip id="bus_18" type="bus__bus" depart="270.00" departPos="8.20" from="26147826#1" to="192071902#4"/>
+    <trip id="bus_19" type="bus__bus" depart="285.00" departPos="39.85" from="26776711#6" to="-26257501#1"/>
+</routes>

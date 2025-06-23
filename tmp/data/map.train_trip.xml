@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-06-18 08:03:31.246167 by randomTrips.py UNKNOWN
+<configuration>
+    <net-file value="data/map.net.xml"/>
+    <output-trip-file value="data/map.train_trip.xml"/>
+    <prefix value="train_"/>
+    <vehicle-class value="tram"/>
+    <random-departpos value="True"/>
+    <allow-fringe value="True"/>
+    <validate value="True"/>
+    <end value="300.0"/>
+    <period value="30.0"/>
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="train__tram" vClass="tram"/>
+    <trip id="train_0" depart="0.00" from="290167754#1" to="290172317#0" type="train__tram" departPos="14.30"/>
+    <trip id="train_1" depart="30.00" from="918466426#0" to="290172319#4" type="train__tram" departPos="23.67"/>
+    <trip id="train_2" depart="60.00" from="918020201#0" to="290172322#2" type="train__tram" departPos="18.39"/>
+    <trip id="train_3" depart="90.00" from="918020201#2" to="918397197#2" type="train__tram" departPos="2.95"/>
+    <trip id="train_4" depart="120.00" from="290172319#5" to="918466425#1" type="train__tram" departPos="34.80"/>
+    <trip id="train_5" depart="150.00" from="290172318#0" to="290172318#0" type="train__tram" departPos="129.06"/>
+    <trip id="train_6" depart="180.00" from="290172318#0" to="290172322#1" type="train__tram" departPos="17.72"/>
+    <trip id="train_7" depart="210.00" from="918020201#2" to="290172320#6" type="train__tram" departPos="3.17"/>
+    <trip id="train_8" depart="240.00" from="918020201#0" to="290172322#2" type="train__tram" departPos="18.27"/>
+    <trip id="train_9" depart="270.00" from="290167754#0" to="918466425#2" type="train__tram" departPos="68.69"/>
+</routes>
