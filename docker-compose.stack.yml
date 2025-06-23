@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./Controller/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "localhost", "-t", "test", "-m", "healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      replicas: 1
+    networks:
+      - common
+      - traci
+
+  traci:
+    image: ghcr.io/c-l-a-x-o-n/traci-script/traci:latest
+    environment:
+      MQTT_HOST: mosquitto
+      MQTT_PORT: 1883
+      SUMO_HOST: sumo
+      SUMO_PORT: 8873
+    deploy:
+      replicas: 1
+    networks:
+      - traci
+      - common
+    volumes:
+      - ./TraCI-script:/app
+
+  sumo:
+    image: ghcr.io/eclipse-sumo/sumo
+    command: ["sumo", "-c", "/config/file.sumocfg", "--start", "--remote-port", "8873"]
+    ports:
+      - "8873:8873"
+    volumes:
+      - ./tmp/data:/config
+    deploy:
+      replicas: 1
+    networks:
+      - traci
+
+networks:
+  common:
+    driver: overlay
+    name: backstack_network
+  traci:
+    driver: overlay

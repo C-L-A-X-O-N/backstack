@@ -69,7 +69,7 @@ services:
       DB_PASSWORD: password
       DB_NAME: claxon
     ports:
-      - "7890:7890"
+      - "7900:7900"
     networks:
       - backend
       - deep
