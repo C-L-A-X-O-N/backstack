@@ -2,6 +2,7 @@ services:
   traci:
     build: TraCI-script
     volumes:
+      - ./tmp/data:/app/data
       - ./TraCI-script:/app
     
   controller_master:
@@ -13,3 +14,4 @@ services:
     build: Controller
     volumes:
       - ./Controller:/app
+      - /var/run/docker.sock:/var/run/docker.sock

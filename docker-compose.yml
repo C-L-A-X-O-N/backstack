@@ -49,10 +49,13 @@ services:
       SUMO_HOST: sumo
       SUMO_PORT: 8873
     networks:
+      - backend
       - deep
+    volumes:
+      - ./tmp/data:/app/data
     
   controller_master:
-    image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
+    image: ghcr.io/c-l-a-x-o-n/controller/master:latest
     depends_on:
       controller_node:
         condition: service_started
@@ -75,17 +78,24 @@ services:
       - deep
 
   controller_node:
-    image: ghcr.io/c-l-a-x-o-n/controller/controller:latest
+    image: ghcr.io/c-l-a-x-o-n/controller/node:latest
     depends_on:
       mosquitto:
         condition: service_healthy
       traci:
         condition: service_started
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     environment:
       BROKER_HOST: mosquitto
       BROKER_PORT: 1883
-      PERSONNAL_BROKER_HOST: mosquitto_node
+      PERSONNAL_BROKER_HOST: localhost
       PERSONNAL_BROKER_PORT: 1883
+      EXTERNAL_PERSONNAL_BROKER_PORT: 1883
+    deploy:
+      replicas: 9
+      mode: replicated
+      endpoint_mode: vip
     networks:
       - backend
       - deep
@@ -103,11 +113,11 @@ services:
       timeout: 5s
       retries: 5
 
-  sumo_config_gen:
-    build: ./TraCI-script
-    command: ["python3", "config_gen.py"]
-    volumes:
-      - traci_config:/app/data
+  # sumo_config_gen:
+  #   build: ./TraCI-script
+  #   command: ["python3", "config_gen.py"]
+  #   volumes:
+  #     - traci_config:/app/data
     
 
   sumo:
@@ -116,11 +126,11 @@ services:
     restart: always
     ports:
       - "8873:8873"
-    volumes:  
-      - traci_config:/config
-    depends_on:
-      sumo_config_gen:
-        condition: service_completed_successfully
+    volumes:
+      - ./tmp/data:/config
+    # depends_on:
+    #   sumo_config_gen:
+    #     condition: service_completed_successfully
     networks:
       - deep
 
