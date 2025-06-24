@@ -32,6 +32,7 @@ services:
       - common
     volumes:
       - ./TraCI-script:/app
+      - ./tmp/data:/app/data
 
   sumo:
     image: ghcr.io/eclipse-sumo/sumo
