@@ -12,7 +12,6 @@ services:
     volumes:
       - ./Controller/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
-      - deep
       - backend
     healthcheck:
       test: ["CMD", "mosquitto_pub", "-h", "localhost", "-t", "test", "-m", "healthcheck"]
@@ -50,7 +49,6 @@ services:
       SUMO_PORT: 8873
     networks:
       - backend
-      - deep
     volumes:
       - ./tmp/data:/app/data
     
@@ -75,7 +73,6 @@ services:
       - "7900:7900"
     networks:
       - backend
-      - deep
 
   controller_node:
     image: ghcr.io/c-l-a-x-o-n/controller/node:latest
@@ -98,14 +95,12 @@ services:
       endpoint_mode: vip
     networks:
       - backend
-      - deep
 
   mosquitto_node:
     image: eclipse-mosquitto:2.0
     volumes:
       - ./Controller/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
-      - deep
       - backend
     healthcheck:
       test: ["CMD", "mosquitto_pub", "-h", "localhost", "-t", "test", "-m", "healthcheck"]
@@ -132,7 +127,7 @@ services:
     #   sumo_config_gen:
     #     condition: service_completed_successfully
     networks:
-      - deep
+      - backend
 
 volumes:
   traci_config:
