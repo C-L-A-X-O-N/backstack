@@ -47,6 +47,7 @@ services:
       MQTT_PORT: 1883
       SUMO_HOST: sumo
       SUMO_PORT: 8873
+      MAX_ZONE: 16 # Must be a perfect square and equal to replicas
     networks:
       - backend
     volumes:
@@ -90,7 +91,7 @@ services:
       PERSONNAL_BROKER_PORT: 1883
       EXTERNAL_PERSONNAL_BROKER_PORT: 1883
     deploy:
-      replicas: 9
+      replicas: 16
       mode: replicated
       endpoint_mode: vip
     networks:
