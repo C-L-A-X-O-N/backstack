@@ -130,6 +130,14 @@ services:
     networks:
       - backend
 
+  toxiproxy:
+    image: shopify/toxiproxy
+    ports:
+      - "8474:8474"
+      - "8475:8475"
+    networks:
+      - backend
+
 volumes:
   traci_config:
     driver: local
